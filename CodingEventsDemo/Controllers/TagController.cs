@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodingEventsDemo.ViewModels;
 using CodingEventsDemo.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEventsDemo.Controllers
 {
@@ -20,7 +21,8 @@ namespace CodingEventsDemo.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Tag> tags = context.Tags.ToList();
+            return View(tags);
         }
 
 
@@ -62,6 +64,17 @@ namespace CodingEventsDemo.Controllers
             }
 
             return View(viewModel);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            List<EventTag> eventTags = context.EventTags
+                  .Where(et => et.TagId == id)
+                  .Include(et => et.Event)
+                  .Include(et => et.Tag)
+                  .ToList();
+
+            return View(eventTags);
         }
 
     } // class
