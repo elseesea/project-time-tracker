@@ -42,13 +42,21 @@ namespace CodingEventsDemo.Controllers
                 int eventId = viewModel.EventId;
                 int tagId = viewModel.TagId;
 
-                EventTag eventTag = new EventTag
+                List<EventTag> existingItems = context.EventTags
+                            .Where(et => et.EventId == eventId)
+                            .Where(et => et.TagId == tagId)
+                            .ToList();
+
+                if (existingItems.Count == 0)
                 {
-                    EventId = eventId,
-                    TagId = tagId
-                };
-                context.EventTags.Add(eventTag);
-                context.SaveChanges();
+                    EventTag eventTag = new EventTag
+                    {
+                        EventId = eventId,
+                        TagId = tagId
+                    };
+                    context.EventTags.Add(eventTag);
+                    context.SaveChanges();
+                }
 
                 return Redirect("/Events/Detail/" + eventId);
             }
