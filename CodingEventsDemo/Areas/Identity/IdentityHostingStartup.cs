@@ -16,7 +16,8 @@ namespace CodingEventsDemo.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<EventDbContext>(options =>
-                    options.UseSqlServer(
+//                    options.UseSqlServer(/* LIH COMMENTED OUT 20210201-2321 & REPLACED WITH LINE BELOW, options.UseMySql(
+                    options.UseMySql(
                         context.Configuration.GetConnectionString("DefaultConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

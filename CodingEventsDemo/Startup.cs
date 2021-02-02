@@ -49,6 +49,7 @@ namespace CodingEventsDemo
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Added 20210202-1225 by Lih
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
