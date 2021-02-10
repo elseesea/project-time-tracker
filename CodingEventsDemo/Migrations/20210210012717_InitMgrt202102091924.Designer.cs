@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CodingEventsDemo.Migrations
+namespace ProjectTaskTimer.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20210202054107_InitMgrt202102012340")]
-    partial class InitMgrt202102012340
+    [Migration("20210210012717_InitMgrt202102091924")]
+    partial class InitMgrt202102091924
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
