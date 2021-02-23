@@ -14,6 +14,8 @@ namespace CodingEventsDemo.Data
 
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<ProjectClient> Clients { get; set; }
+
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
