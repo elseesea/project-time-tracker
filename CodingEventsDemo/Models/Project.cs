@@ -17,6 +17,8 @@ namespace CodingEventsDemo.Models
 
         public int ClientId { get; set; } // This is foreign key to clients table
 
+        public List<Task> Tasks { get; set; }
+
         public Project(string description, string currentUserID)
         {
             Description = description;

@@ -2,6 +2,7 @@
 using CodingEventsDemo.Models;
 using CodingEventsDemo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace CodingEventsDemo.Controllers
 
         public IActionResult Index()
         {
-            List<ProjectClient> clients = context.Clients.ToList();
+            List<ProjectClient> clients = context.Clients
+                .Include(c => c.Projects)
+                .ToList();
 
             return View(clients);
         }

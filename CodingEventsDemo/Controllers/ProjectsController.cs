@@ -47,33 +47,43 @@ namespace CodingEventsDemo.Controllers
 
         public IActionResult Add()
         {
-            List<EventCategory> categories = context.Categories.ToList();
-            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
+            List<ProjectClient> clients = context.Clients.ToList();
+            AddProjectViewModel addProjectViewModel = new AddProjectViewModel(clients);
 
-            return View(addEventViewModel);
+            return View(addProjectViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(AddEventViewModel addEventViewModel)
+        public IActionResult Add(AddProjectViewModel addProjectViewModel)
         {
             if (ModelState.IsValid)
             {
-                EventCategory theCategory = context.Categories.Find(addEventViewModel.CategoryId);
-                Event newEvent = new Event
+                ProjectClient theClient = context.Clients.Find(addProjectViewModel.ClientId);
+                Project newProject = new Project
                 {
-                    Name = addEventViewModel.Name,
-                    Description = addEventViewModel.Description,
-                    ContactEmail = addEventViewModel.ContactEmail,
-                    Category = theCategory
+                    Description = addProjectViewModel.Description,
+                    Client = theClient
                 };
 
-                context.Events.Add(newEvent);
+                context.Projects.Add(newProject);
                 context.SaveChanges();
 
-                return Redirect("/Events");
+                return Redirect("/Projects");
             }
 
-            return View(addEventViewModel);
+            return View(addProjectViewModel);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Project theProject = context.Projects
+               .Include(p => p.Client)
+               .Include(p => p.Tasks)
+               .Single(p => p.Id == id);
+
+            ProjectDetailViewModel viewModel = new ProjectDetailViewModel(theProject);
+
+            return View(viewModel);
         }
 
     } // class

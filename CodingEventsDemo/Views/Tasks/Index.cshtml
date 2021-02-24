@@ -1,0 +1,35 @@
+﻿@model List<CodingEventsDemo.Models.Task>
+
+
+<h1>Projects</h1>
+
+<p>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.ElementAt(0).ProjectId">Add Task</a>
+</p>
+
+
+@if (Model.Count == 0)
+{
+    <p>No tasks yet!</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+        @foreach (var aTask in Model)
+        {
+            <tr>
+                <td>@aTask.Id</td>
+                <td><a asp-controller="Tasks" asp-action="Detail" asp-route-id="@aTask.Id">@aTask.Details</a></td>
+            </tr>
+        }
+    </table>
+}
+

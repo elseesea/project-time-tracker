@@ -1,0 +1,31 @@
+﻿@model CodingEventsDemo.ViewModels.ProjectDetailViewModel
+<h2>Project:</h2>
+<h1>@Model.Description</h1>
+
+<hr />
+
+<h2>Client Name:</h2>
+<h1>@Model.ClientName</h1>
+
+<hr />
+
+<p>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.ProjectId">Add a Task</a>
+</p>
+
+
+<h2>Tasks in project</h2>
+
+<table class="table">
+    <tr>
+        <th>Task Id</th>
+        <th>Task Details</th>
+    </tr>
+    @foreach (var task in Model.Tasks)
+    {
+        <tr>
+            <td>@task.Id</td>
+            <td>@task.Details</td>
+        </tr>
+    }
+</table>
