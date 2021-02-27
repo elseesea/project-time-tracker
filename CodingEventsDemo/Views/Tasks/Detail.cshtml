@@ -1,0 +1,20 @@
+﻿@model CodingEventsDemo.ViewModels.TaskDetailViewModel
+<h1>Task</h1>
+
+<table class="table">
+    <tr>
+        <th>Client name</th>
+        <th>Project</th>
+    </tr>
+    <tr>
+        <td>@Model.Project.Client.Name</td>
+        <td>@Model.Project.Description</td>
+    </tr>
+</table>
+
+<h3>Task details</h3>
+<p>@Model.Details</p>
+
+<p>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a Task</a>
+</p>

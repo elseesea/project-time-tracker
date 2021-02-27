@@ -12,7 +12,7 @@ namespace CodingEventsDemo.ViewModels
 
         public List<Task> Tasks { get; set; } = new List<Task>();
 
-        public ProjectDetailViewModel(Project theProject)
+        public ProjectDetailViewModel(CodingEventsDemo.Models.Project theProject)
         {
             ProjectId = theProject.Id;
             Description = theProject.Description;
@@ -35,5 +35,6 @@ namespace CodingEventsDemo.ViewModels
                 this.Tasks.Add(shortenedTask);
             }
         }
-    }
-}
+
+    } // class
+} // namespace
