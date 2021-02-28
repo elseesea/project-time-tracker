@@ -29,46 +29,15 @@ namespace CodingEventsDemo.Controllers
             return View(tasks);
         }
 
-        [Route("/tasks/create/{taskProjectId}")]
-        public IActionResult Create(int taskProjectId, int pleaseDeleteThisMethod)
-        {
-            AddTasksViewModel addTasksViewModel = new AddTasksViewModel(taskProjectId);
-            return View(addTasksViewModel);
-        }
-
-        [HttpPost]
-        public IActionResult Creat(AddTasksViewModel addTasksViewModel, int pleaseDeleteThisMethod)
-        {
-            if (ModelState.IsValid)
-            {
-                Task newTask= new Task
-                {
-                    Details = addTasksViewModel.Details,
-                    ProjectId = addTasksViewModel.ProjectId
-                };
-
-                context.Tasks.Add(newTask);
-                context.SaveChanges();
-
-                return Redirect("/Tasks");
-            }
-
-            return View(addTasksViewModel);
-        }
-
         [HttpGet]
         [Route("/tasks/create/{taskProjectId}")]
-        public IActionResult Creat(int taskProjectId)
+        public IActionResult Create(int taskProjectId)
         {
-            AddTasksViewModel addTasksViewModel = new AddTasksViewModel(taskProjectId);
+            Project aProject = context.Projects
+               .Single(p => p.Id == taskProjectId);
+
+            AddTasksViewModel addTasksViewModel = new AddTasksViewModel(aProject);
             return View(addTasksViewModel);
-
-/*
-            List<ProjectClient> clients = context.Clients.ToList();
-            AddProjectViewModel addProjectViewModel = new AddProjectViewModel(clients);
-
-            return View(addProjectViewModel);
-*/
         }
 
         [HttpPost]

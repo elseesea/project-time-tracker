@@ -2,21 +2,13 @@
 @model AddTasksViewModel;
 
 <h1>Add Tasks</h1>
+<h3>For project "@Model.ProjectDescription"</h3>
 
 <form asp-controller="Tasks" asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="Details"></label>
         <input asp-for="Details" />
     </div>
-    <div class="form-group">
-        <label asp-for="ProjectId"></label>
-        <input asp-for="ProjectId" />
-    </div>
-    <!--
-        <div class="form-group">
-            <label asp-for="ClientId">Client</label>
-            <select asp-for="ClientId" asp-items="Model.Clients"></select>
-        </div>
-    -->
+    @Html.Hidden("ProjectId")
     <input type="submit" value="Add Task" />
 </form>

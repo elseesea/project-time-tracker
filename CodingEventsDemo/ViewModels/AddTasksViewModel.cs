@@ -19,11 +19,14 @@ namespace CodingEventsDemo.ViewModels
 
         public int ProjectId { get; set; }
 
+        public string ProjectDescription { get; set; }
+
         //public List<SelectListItem> Clients { get; set; }
 
-        public AddTasksViewModel(int projectId)
+        public AddTasksViewModel(Project project)
         {
-            this.ProjectId = projectId;
+            this.ProjectId = project.Id;
+            this.ProjectDescription = project.Description;
         }
 
         public AddTasksViewModel()
