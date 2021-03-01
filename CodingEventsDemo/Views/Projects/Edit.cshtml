@@ -1,0 +1,14 @@
+﻿@model CodingEventsDemo.ViewModels.EditProjectViewModel
+
+<h1>Edit Project description for client @Model.ClientName</h1>
+
+<form asp-controller="Projects" asp-action="ProcessEditProjectForm" method="post">
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+    @Html.Hidden("ProjectId")
+    @Html.Hidden("ClientId")
+    <input type="submit" value="Update Project description" />
+</form>

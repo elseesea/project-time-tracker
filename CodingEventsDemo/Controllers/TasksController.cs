@@ -54,7 +54,7 @@ namespace CodingEventsDemo.Controllers
                 context.Tasks.Add(newTask);
                 context.SaveChanges();
 
-                return Redirect("/Tasks");
+                return Redirect("/Projects/Detail/" + addTasksViewModel.ProjectId);
             }
 
             return View(addTasksViewModel);

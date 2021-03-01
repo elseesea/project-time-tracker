@@ -1,6 +1,9 @@
 ﻿@model CodingEventsDemo.ViewModels.ProjectDetailViewModel
 <h2>Project:</h2>
 <h1>@Model.Description</h1>
+<p>
+    <a asp-controller="Projects" asp-action="Edit" asp-route-id="@Model.ProjectId">Edit project description</a>
+</p>
 
 <hr />
 

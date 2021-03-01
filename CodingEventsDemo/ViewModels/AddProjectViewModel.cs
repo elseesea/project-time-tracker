@@ -14,7 +14,7 @@ namespace CodingEventsDemo.ViewModels
     public class AddProjectViewModel
     {
         [Required(ErrorMessage = "Description is required!")]
-        [StringLength(100, MinimumLength = 4, ErrorMessage = "Name must be between 4 and 100 characters long")]
+        [StringLength(100, MinimumLength = 4, ErrorMessage = "Description must be between 4 and 100 characters long")]
         public string Description { get; set; }
 
         public int ClientId { get; set; }

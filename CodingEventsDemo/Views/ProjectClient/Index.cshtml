@@ -17,13 +17,16 @@ else
         <tr>
             <th>Id
             <th>Client</th>
+            <th>Client Name</th>
         </tr>
         @foreach (ProjectClient client in Model)
         {
-            <tr>
-                <td>@client.Id</td>
-                <td>@client.Name</td>
-            </tr>
+        <tr>
+            <td>@client.Id</td>
+            <td>@client.Name</td>
+            <td><a asp-controller="ProjectClient" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
+
+        </tr>
         }
     </table>
 }

@@ -17,16 +17,19 @@ else
     <table class="table">
         <tr>
             <th>
-                Id
+                Project Id
+            </th>
+            <th>Client
             </th>
             <th>
-                Description
+                Project Description
             </th>
         </tr>
         @foreach (var project in Model)
         {
             <tr>
                 <td>@project.Id</td>
+                <td>@project.Client.Name</td>
                 <td><a asp-controller="Projects" asp-action="Detail" asp-route-id="@project.Id">@project.Description</a></td>
             </tr>
         }

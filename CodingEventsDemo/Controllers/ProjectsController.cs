@@ -24,19 +24,6 @@ namespace CodingEventsDemo.Controllers
 
         public IActionResult Index()
         {
-            //var user = context.Users.Single(a => a.Login == User.Identity.Name);
-
-            //string currentUser = User.Identity.Name;
-
-            /*
-            ClaimsPrincipal currentUser = this.User;
-            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            Project project = new Project(;
-
-            return View(currentUserID);
-            */
-
             List<Project> projects = context.Projects
                 .Include(p => p.Client)
                 .ToList();
@@ -84,6 +71,37 @@ namespace CodingEventsDemo.Controllers
             ProjectDetailViewModel viewModel = new ProjectDetailViewModel(theProject);
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Route("/projects/edit/{projectId}")]
+        public IActionResult Edit(int projectId)
+        {
+            Models.Project project = context.Projects
+                .Include(p => p.Client)
+                .Single(p => p.Id == projectId);
+
+            EditProjectViewModel editProjectViewModel = new EditProjectViewModel(project);
+            return View(editProjectViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ProcessEditProjectForm(EditProjectViewModel editProjectViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Models.Project project = new Models.Project
+                {
+                    Id = editProjectViewModel.ProjectId,
+                    Description = editProjectViewModel.Description,
+                    ClientId = editProjectViewModel.ClientId
+                };
+                context.Update(project);
+                context.SaveChanges();
+                return Redirect("Detail/" + editProjectViewModel.ProjectId.ToString());
+            }
+
+            return View("Edit", editProjectViewModel);
         }
 
     } // class

@@ -1,0 +1,13 @@
+﻿@model CodingEventsDemo.ViewModels.EditClientViewModel
+
+<h1>Edit Client</h1>
+
+<form asp-controller="ProjectClient" asp-action="ProcessEditProjectClientForm" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    @Html.Hidden("ClientId")
+    <input type="submit" value="Update Client Name" />
+</form>

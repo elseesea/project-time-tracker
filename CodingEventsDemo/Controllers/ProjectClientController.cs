@@ -55,6 +55,34 @@ namespace CodingEventsDemo.Controllers
             return View("Create", addProjectCategoryViewModel);
         }
 
+        [HttpGet]
+        [Route("/projectclient/edit/{clientId}")]
+        public IActionResult Edit(int clientId)
+        {
+            ProjectClient client = context.Clients
+                .Single(c => c.Id == clientId);
+
+            EditClientViewModel editClientViewModel = new EditClientViewModel(client);
+            return View(editClientViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ProcessEditProjectClientForm(EditClientViewModel editClientViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ProjectClient client = new ProjectClient
+                {
+                    Id = editClientViewModel.ClientId,
+                    Name = editClientViewModel.Name
+                };
+                context.Update(client);
+                context.SaveChanges();
+                return Redirect("Index");
+            }
+
+            return View("Edit", editClientViewModel);
+        }
 
     } // class
 } // namespace
