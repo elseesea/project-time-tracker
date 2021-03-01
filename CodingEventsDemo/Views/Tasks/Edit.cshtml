@@ -1,0 +1,14 @@
+﻿@model CodingEventsDemo.ViewModels.EditTaskViewModel
+
+<h1>Edit Task Details for project @Model.ProjectDescription</h1>
+
+<form asp-controller="Tasks" asp-action="ProcessEditTaskForm" method="post">
+    <div class="form-group">
+        <label asp-for="Details"></label>
+        <input asp-for="Details" />
+        <span asp-validation-for="Details"></span>
+    </div>
+    @Html.Hidden("ProjectId")
+    @Html.Hidden("TaskId")
+    <input type="submit" value="Update Task details" />
+</form>

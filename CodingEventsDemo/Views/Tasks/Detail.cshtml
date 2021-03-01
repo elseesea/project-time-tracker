@@ -4,7 +4,7 @@
 <table class="table">
     <tr>
         <th>Client name</th>
-        <th>Project</th>
+        <th>Project description</th>
     </tr>
     <tr>
         <td>@Model.Project.Client.Name</td>
@@ -16,5 +16,8 @@
 <p>@Model.Details</p>
 
 <p>
-    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a Task</a>
+    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.TaskId">Edit Task</a>
+</p>
+<p>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a new Task to this project</a>
 </p>

@@ -98,7 +98,7 @@ namespace CodingEventsDemo.Controllers
                 };
                 context.Update(project);
                 context.SaveChanges();
-                return Redirect("Detail/" + editProjectViewModel.ProjectId.ToString());
+                return Redirect("Detail/" + editProjectViewModel.ProjectId);
             }
 
             return View("Edit", editProjectViewModel);

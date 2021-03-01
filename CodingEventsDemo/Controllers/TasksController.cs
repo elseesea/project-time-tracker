@@ -78,7 +78,6 @@ namespace CodingEventsDemo.Controllers
             */
         }
 
-
         public IActionResult Detail(int id)
         {
             Task theTask = context.Tasks
@@ -91,5 +90,35 @@ namespace CodingEventsDemo.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        [Route("/tasks/edit/{taskId}")]
+        public IActionResult Edit(int taskId)
+        {
+            Models.Task task = context.Tasks
+                .Include(t => t.Project)
+                .Single(t => t.Id == taskId);
+
+            EditTaskViewModel editTaskViewModel = new EditTaskViewModel(task);
+            return View(editTaskViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ProcessEditTaskForm(EditTaskViewModel editTaskViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Models.Task task = new Models.Task
+                {
+                    Id = editTaskViewModel.TaskId,
+                    Details = editTaskViewModel.Details,
+                    ProjectId = editTaskViewModel.ProjectId
+                };
+                context.Update(task);
+                context.SaveChanges();
+                return Redirect("Detail/" + editTaskViewModel.TaskId);
+            }
+
+            return View("Edit", editTaskViewModel);
+        }
     } // class
 } // namespace
