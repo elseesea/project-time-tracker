@@ -40,6 +40,19 @@ namespace CodingEventsDemo.Controllers
             return View(addProjectViewModel);
         }
 
+        // Add a project for a specific client
+        [Route("/projects/add/{clientId}")]
+        public IActionResult Add(int clientId)
+        {
+            ProjectClient client = context.Clients
+                .Single(c => c.Id == clientId);
+
+            List<ProjectClient> clients = new List<ProjectClient> { client };
+            AddProjectViewModel addProjectViewModel = new AddProjectViewModel(clients);
+
+            return View(addProjectViewModel);
+        }
+
         [HttpPost]
         public IActionResult Add(AddProjectViewModel addProjectViewModel)
         {
@@ -61,6 +74,7 @@ namespace CodingEventsDemo.Controllers
             return View(addProjectViewModel);
         }
 
+        [Route("/projects/detail/{id}")]
         public IActionResult Detail(int id)
         {
             Project theProject = context.Projects

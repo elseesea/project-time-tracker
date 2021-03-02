@@ -11,3 +11,29 @@
     @Html.Hidden("ClientId")
     <input type="submit" value="Update Client Name" />
 </form>
+
+<hr />
+
+<h2>
+    Projects
+</h2>
+@if (Model.Projects.Count < 1)
+{
+    <p>No projects found</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Project Id</th>
+            <th>Project Description </th>
+        </tr>
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>@project.Id</td>
+                <td><a asp-controller="Projects" asp-action="Detail" asp-route-id="@project.Id">@project.Description</a></td>
+            </tr>
+        }
+    </table>
+}

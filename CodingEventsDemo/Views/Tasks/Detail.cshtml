@@ -13,7 +13,43 @@
 
 <hr />
 <p>
-    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.TaskId">Edit Task Details</a> | 
-    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a new Task to this project</a> | 
+    <a asp-controller="Timers" asp-action="Create" asp-route-id="@Model.TaskId">Add Timer</a> |
+    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.TaskId">Edit Task Details</a> |
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a new Task to this project</a> |
     <a asp-controller="Projects" asp-action="Detail" asp-route-id="@Model.Project.Id">See all tasks for this project</a>
 </p>
+
+<hr />
+<h3>Task timers</h3>
+@if (Model.Timers.Count < 1)
+{
+    <p>No timers found for this task</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                Timer Id
+            </th>
+            <th>
+                Begin Time
+            </th>
+            <th>
+                End Time
+            </th>
+            <th>
+                Duration
+            </th>
+        </tr>
+        @foreach (var timer in Model.Timers)
+        {
+            <tr>
+                <td>@timer.Id</td>
+                <td>@timer.BeginTime</td>
+                <td>@timer.EndTime</td>
+                <td>@(timer.EndTime-@timer.BeginTime)</td>
+            </tr>
+        }
+    </table>
+}

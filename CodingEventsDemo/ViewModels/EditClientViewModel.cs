@@ -15,10 +15,13 @@ namespace CodingEventsDemo.ViewModels
 
         public int ClientId { get; set; }
 
+        public List<Project> Projects { get; set; }
+
         public EditClientViewModel(ProjectClient client)
         {
             this.ClientId = client.Id;
             this.Name = client.Name;
+            this.Projects = client.Projects;
         }
 
         public EditClientViewModel()

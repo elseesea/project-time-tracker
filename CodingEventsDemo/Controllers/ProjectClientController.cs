@@ -60,6 +60,7 @@ namespace CodingEventsDemo.Controllers
         public IActionResult Edit(int clientId)
         {
             ProjectClient client = context.Clients
+                .Include(c => c.Projects)
                 .Single(c => c.Id == clientId);
 
             EditClientViewModel editClientViewModel = new EditClientViewModel(client);
@@ -82,6 +83,17 @@ namespace CodingEventsDemo.Controllers
             }
 
             return View("Edit", editClientViewModel);
+        }
+        // Show all projects for a given client
+        public IActionResult Detail(int id)
+        {
+            ProjectClient client = context.Clients
+               .Include(c => c.Projects)
+               .Single(c => c.Id == id);
+
+            ClientDetailViewModel viewModel = new ClientDetailViewModel(client);
+
+            return View(viewModel);
         }
 
     } // class

@@ -3,7 +3,7 @@
 <h1>All Clients</h1>
 
 <p>
-    <a asp-controller="ProjectClient" asp-action="Create">Add Client</a>
+    <a asp-controller="ProjectClient" asp-action="Create">Add a new Client</a>
 </p>
 
 
@@ -16,16 +16,15 @@ else
     <table class="table">
         <tr>
             <th>Id
-            <th>Client</th>
             <th>Client Name</th>
+            <th>Projects</th>
         </tr>
         @foreach (ProjectClient client in Model)
         {
         <tr>
             <td>@client.Id</td>
-            <td>@client.Name</td>
             <td><a asp-controller="ProjectClient" asp-action="Edit" asp-route-id="@client.Id">@client.Name</a></td>
-
+            <td><a asp-controller="ProjectClient" asp-action="Detail" asp-route-id="@client.Id">@client.Projects.Count</a></td>
         </tr>
         }
     </table>

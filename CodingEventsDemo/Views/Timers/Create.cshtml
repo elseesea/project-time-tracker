@@ -1,0 +1,18 @@
+﻿@using CodingEventsDemo.ViewModels;
+@model AddTimerViewModel;
+
+<h1>Add a Timer</h1>
+<h3>Task Details: @Model.TaskDetails</h3>
+
+<form asp-controller="Timers" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="BeginTime">Begin Time</label>
+        <input asp-for="BeginTime" type="datetime-local" value='@DateTime.Today.ToString("yyyy-MM-dd")' class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndTime">End Time</label>
+        <input asp-for="EndTime" type="datetime-local" value='@DateTime.Today.ToString("yyyy-MM-dd")' class="form-control" />
+    </div>
+    @Html.Hidden("TaskId")
+    <input type="submit" value="Save Timer" />
+</form>

@@ -2,7 +2,7 @@
 @model AddTasksViewModel;
 
 <h1>Add Tasks</h1>
-<h3>For project "@Model.ProjectDescription"</h3>
+<h3>For project <a asp-controller="Projects" asp-action="Detail" asp-route-id="@Model.ProjectId">@Model.ProjectDescription</a></h3>
 
 <form asp-controller="Tasks" asp-action="Create" method="post">
     <div class="form-group">

@@ -1,6 +1,10 @@
 ﻿@model CodingEventsDemo.ViewModels.EditProjectViewModel
 
-<h1>Edit Project description for client @Model.ClientName</h1>
+<h1>
+    Edit Project description for client
+    <a asp-controller="ProjectClient" asp-action="Detail" asp-route-id="@Model.ClientId"> @Model.ClientName</a>
+</h1>
+
 
 <form asp-controller="Projects" asp-action="ProcessEditProjectForm" method="post">
     <div class="form-group">

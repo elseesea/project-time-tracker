@@ -58,31 +58,14 @@ namespace CodingEventsDemo.Controllers
             }
 
             return View(addTasksViewModel);
-/*
-                        if (ModelState.IsValid)
-                        {
-                            ProjectClient theClient = context.Clients.Find(addProjectViewModel.ClientId);
-                            Project newProject = new Project
-                            {
-                                Description = addProjectViewModel.Description,
-                                Client = theClient
-                            };
-
-                            context.Projects.Add(newProject);
-                            context.SaveChanges();
-
-                            return Redirect("/Projects");
-                        }
-
-                        return View(addProjectViewModel);
-            */
         }
 
         public IActionResult Detail(int id)
         {
             Task theTask = context.Tasks
                .Include(t => t.Project)
-                .Include(t => t.Project.Client)
+               .Include(t => t.Project.Client)
+               .Include(t => t.Timers)
                .Single(t => t.Id == id);
 
             TaskDetailViewModel viewModel = new TaskDetailViewModel(theTask);

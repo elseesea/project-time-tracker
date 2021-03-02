@@ -4,6 +4,9 @@
 <p>
     <a asp-controller="Projects" asp-action="Edit" asp-route-id="@Model.ProjectId">Edit project description</a>
 </p>
+<p>
+    <a asp-controller="Projects" asp-action="Add" asp-route-id="@Model.ClientId">Add a project for this client</a>
+</p>
 
 <hr />
 
@@ -13,7 +16,7 @@
 <hr />
 
 <p>
-    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.ProjectId">Add a Task</a>
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.ProjectId">Add a Task to this project</a>
 </p>
 
 
