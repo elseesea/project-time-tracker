@@ -18,6 +18,8 @@ namespace CodingEventsDemo.Data
 
         public DbSet<Task> Tasks { get; set; }
 
+        public DbSet<Timer> Timers { get; set; }
+
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {

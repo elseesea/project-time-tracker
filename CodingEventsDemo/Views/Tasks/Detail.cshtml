@@ -1,23 +1,19 @@
 ﻿@model CodingEventsDemo.ViewModels.TaskDetailViewModel
 <h1>Task</h1>
 
-<table class="table">
-    <tr>
-        <th>Client name</th>
-        <th>Project description</th>
-    </tr>
-    <tr>
-        <td>@Model.Project.Client.Name</td>
-        <td>@Model.Project.Description</td>
-    </tr>
-</table>
+<p>
+    <em>Client name</em>: @Model.Project.Client.Name<br />
+    <em>Project description</em>: @Model.Project.Description
+</p>
+
+<hr />
 
 <h3>Task details</h3>
 <p>@Model.Details</p>
 
+<hr />
 <p>
-    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.TaskId">Edit Task</a>
-</p>
-<p>
-    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a new Task to this project</a>
+    <a asp-controller="Tasks" asp-action="Edit" asp-route-id="@Model.TaskId">Edit Task Details</a> | 
+    <a asp-controller="Tasks" asp-action="Create" asp-route-id="@Model.Project.Id">Add a new Task to this project</a> | 
+    <a asp-controller="Projects" asp-action="Detail" asp-route-id="@Model.Project.Id">See all tasks for this project</a>
 </p>

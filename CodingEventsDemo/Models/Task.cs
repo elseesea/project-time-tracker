@@ -14,6 +14,7 @@ namespace CodingEventsDemo.Models
         public Project Project { get; set; }
 
         public int ProjectId { get; set; }
+        public List<Timer> Timers { get; set; }
 
         public Task(string details)
         {
